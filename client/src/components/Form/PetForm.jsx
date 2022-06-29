@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Paper } from '@mui/material';
 import FormNav from '../Nav/FormNav';
+import Footer from '../Footer/footer';
 
 
 const PetForm = (props) => {
@@ -73,7 +74,7 @@ const PetForm = (props) => {
                         style={{
                             width: '600px',
                             padding: 20,
-                            marginBottom: '40px',
+                            marginBottom: '100px',
                             backgroundColor: "rgb(247 247 247 / 87%)"
                         }}>
                         <form onSubmit={onSubmitHandler}>
@@ -134,15 +135,24 @@ const PetForm = (props) => {
                                     name="myImage"
                                     onChange={(event) => { console.log(event.target.files[0]); setImage(event.target.files[0]) }} />
                                 <br></br>
-                                <Button
-                                    type="submit"
-                                    variant="contained"
-                                    style={{ textAlign: 'right', backgroundColor: 'rgb(248, 181, 161)' }}>Submit</Button>
+                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                    <Button
+                                        href="/"
+                                        variant="text"
+                                        style={{ color: 'grey' }}>Cancel
+                                    </Button>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        style={{ backgroundColor: 'rgb(248, 181, 161)', width: '140px' }}>Submit
+                                    </Button>
+                                </div>
                             </div>
                         </form>
                     </Paper>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

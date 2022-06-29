@@ -1,6 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import background from "../assets/petBackground.png";
+import Button from '@mui/material/Button';
+import { Paper } from '@mui/material';
+import FormNav from '../Nav/FormNav';
+import Footer from '../Footer/footer';
 
 const Detail = (props) => {
     const [pets, setPets] = useState({})
@@ -26,13 +31,37 @@ const Detail = (props) => {
 
     return (
         <div>
-            <h1>Pet Shelter</h1>
-            <h3>Details about: {pets.name}</h3>
-            <p>Pet type: {pets.type}</p>
-            <p>Description: {pets.description}</p>
-            <p>Skills: {pets.skillOne} {pets.skillTwo} {pets.skillThree}</p>
-            <button className="btn btn-success" onClick={(e) => { deleteProduct(pets._id) }}>Adopt {pets.name}</button><br></br><br></br>
-            <Link to="/" className="btn btn-primary">Home Page</Link>
+            <FormNav />
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                backgroundImage: `url(${background})`,
+                backgroundRepeat: 'repeat',
+                marginTop: '60px',
+            }}>
+
+                <div>
+                    <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>You are now viewing {pets.name}</h3>
+                    <Paper
+                        elevation={2}
+                        style={{
+                            width: '600px',
+                            padding: 20,
+                            marginBottom: '100px',
+                            backgroundColor: "rgb(247 247 247 / 87%)"
+                        }}>
+                        <h3>Pet Name: {pets.name}</h3>
+                        <p>Pet Type: {pets.type}</p>
+                        <p>Description: {pets.description}</p>
+                        <p>Skills: {pets.skillOne} {pets.skillTwo} {pets.skillThree}</p>
+                        <Button
+                            variant="contained"
+                            style={{ backgroundColor: 'rgb(248, 181, 161)' }}
+                            onClick={(e) => { deleteProduct(pets._id) }}>Adopt {pets.name}</Button>
+                    </Paper>
+                </div>
+            </div>
+            <Footer />
         </div>
     )
 }

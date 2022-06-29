@@ -40,3 +40,17 @@
 .danger {
   color: red;
 }
+
+.footerContainer {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.footerContentContainer {
+  width: 600px;
+  display: flex;
+  justify-content: space-around;
+}

@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
 import DashBoardNav from '../Nav/DashBoardNav';
+import Footer from '../Footer/footer';
 
 
 const PetList = (props) => {
@@ -37,7 +38,7 @@ const PetList = (props) => {
                 backgroundRepeat: 'repeat',
                 marginTop: '60px',
             }}>
-            <Container sx={{ marginBottom:'40px' }} maxWidth="md">
+            <Container sx={{ marginBottom:'100px' }} maxWidth="md">
 
             <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>There pets are looking for a new home!</h3>
                 <Grid container spacing={4}>
@@ -68,6 +69,7 @@ const PetList = (props) => {
                 </Grid>
             </Container>
             </div>
+            <Footer />
         </div>
     );
 }

@@ -12,7 +12,8 @@ import AddButton from './AddButton';
 
 
 
-const DashBoardNav = () => {
+const DashBoardNav = (props) => {
+
     return (
         <Box>
             <AppBar
@@ -27,7 +28,7 @@ const DashBoardNav = () => {
                         </Typography>
                     </Button>
                         <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                            <Search />
+                            <Search {...props.searchTerm} />
                             <FavoriteIcon />
                             <AddButton />
                         </Box>
