@@ -28,9 +28,12 @@ const PetList = (props) => {
     }, []);
 
 
+
+
     return (
         <div>
-            <DashBoardNav />
+            <DashBoardNav
+            />
             <div style={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -38,36 +41,38 @@ const PetList = (props) => {
                 backgroundRepeat: 'repeat',
                 marginTop: '60px',
             }}>
-            <Container sx={{ marginBottom:'100px' }} maxWidth="md">
-
-            <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>There pets are looking for a new home!</h3>
-                <Grid container spacing={4}>
-                    {pets.map((pets) => (
-                        <Grid item key={pets} xs={12} sm={6} md={3}>
-                            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                                <CardMedia
-                                    style={{height: '200px'}}
-                                    component="img"
-                                    image="https://source.unsplash.com/random"
-                                    alt="random"
-                                /><img alt='test'>{pets.image}</img>
-                                <CardContent sx={{ flexGrow: 1 }}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {pets.name}
-                                    </Typography>
-                                    <Typography>
-                                        {pets.type}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions style={{ justifyContent: "space-between" }}>
-                                    <Button color="secondary" size="small" href={`/pet/` + pets._id}>View</Button>
-                                    <Button color="secondary" size="small" href={`/pet/update/` + pets._id}>Edit</Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Container>
+                <Container sx={{ marginBottom: '100px' }} maxWidth="md">
+                    <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>There pets are looking for a new home!</h3>
+                    <Grid container spacing={4}>
+                        {pets.map(pets => {
+                            return (
+                                <Grid item key={pets} xs={12} sm={6} md={3}>
+                                    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                        <CardMedia
+                                            style={{ height: '200px' }}
+                                            component="img"
+                                            image="https://source.unsplash.com/random"
+                                            alt="random"
+                                        />
+                                        {/* <img alt='test'>{pets.image}</img> */}
+                                        <CardContent sx={{ flexGrow: 1 }}>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {pets.name}
+                                            </Typography>
+                                            <Typography>
+                                                {pets.type}
+                                            </Typography>
+                                        </CardContent>
+                                        <CardActions style={{ justifyContent: "space-between" }}>
+                                            <Button color="secondary" size="small" href={`/pet/` + pets._id}>View</Button>
+                                            <Button color="secondary" size="small" href={`/pet/update/` + pets._id}>Edit</Button>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            )
+                        })}
+                    </Grid>
+                </Container>
             </div>
             <Footer />
         </div>
