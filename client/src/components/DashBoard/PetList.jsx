@@ -10,7 +10,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import DashBoardNav from '../Nav/DashBoardNav';
 import Footer from '../Footer/footer';
 
 
@@ -27,20 +26,18 @@ const PetList = (props) => {
             .catch(err => console.error(err));
     }, []);
 
-
-    const filterPets = event => {
-        // event.preventDefault();
-        const search = event.target.value.toLowerCase()
-        const filteredPets = pets.filter(pets => pets.name||pets.type.toLowerCase().includes(search))
-        setPets(filteredPets)
-    }
+// Filters data for search bar
+    const filteredData = pets.filter((filteredPet) => {
+        if (props.input === '') {
+            return filteredPet;
+        } else {
+            return filteredPet.name.toLowerCase().includes(props.input) || filteredPet.type.toLowerCase().includes(props.input)
+        }
+    })
 
 
     return (
         <div>
-            <DashBoardNav
-            filterPets={filterPets}
-            />
             <div style={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -49,14 +46,11 @@ const PetList = (props) => {
                 marginTop: '60px',
             }}>
                 <Container sx={{ marginBottom: '100px' }} maxWidth="md">
-
-                    {/* <input type='text' onChange={(e) => filterPets(e)} /> */}
-
                     <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>There pets are looking for a new home!</h3>
                     <Grid container spacing={4}>
-                        {pets.map(pets => {
+                        {filteredData.map((pets, index) => {
                             return (
-                                <Grid item key={pets} xs={12} sm={6} md={3}>
+                                <Grid item key={index} xs={12} sm={6} md={3}>
                                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                                         <CardMedia
                                             style={{ height: '200px' }}

@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PetForm from './components/Form/PetForm';
-import PetList from './components/DashBoard/PetList';
+import DashBoardNav from './components/DashBoard/DashBoard&Nav';
 import Update from './components/UpdateOne/Update';
 import Detail from './components/ShowOne/Detail';
 
@@ -13,7 +13,7 @@ function App() {
         <Switch>
 
           <Route exact path="/">
-            <PetList />
+            <DashBoardNav />
           </Route>
 
           <Route exact path="/pets/new">
