@@ -13,7 +13,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddButton from './AddButton';
 
 
-const DashBoardNav = ({ searchQuery }) => {
+const DashBoardNav = ({ filterPets }) => {
     // const [searchTerm, setSearchTerm] = useState(pets)
 
 
@@ -63,7 +63,6 @@ const DashBoardNav = ({ searchQuery }) => {
 
 
 
-
     return (
         <Box>
             <AppBar
@@ -83,7 +82,7 @@ const DashBoardNav = ({ searchQuery }) => {
                                 <SearchIcon />
                             </SearchIconWrapper>
                             <StyledInputBase
-                                onChange={searchQuery}
+                                onChange={(event) => filterPets(event)}
                                 placeholder="Search…"
                                 inputProps={{ 'aria-label': 'search' }}
                             />

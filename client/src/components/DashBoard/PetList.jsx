@@ -28,11 +28,18 @@ const PetList = (props) => {
     }, []);
 
 
+    const filterPets = event => {
+        // event.preventDefault();
+        const search = event.target.value.toLowerCase()
+        const filteredPets = pets.filter(pets => pets.name||pets.type.toLowerCase().includes(search))
+        setPets(filteredPets)
+    }
 
 
     return (
         <div>
             <DashBoardNav
+            filterPets={filterPets}
             />
             <div style={{
                 display: 'flex',
@@ -42,6 +49,9 @@ const PetList = (props) => {
                 marginTop: '60px',
             }}>
                 <Container sx={{ marginBottom: '100px' }} maxWidth="md">
+
+                    {/* <input type='text' onChange={(e) => filterPets(e)} /> */}
+
                     <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>There pets are looking for a new home!</h3>
                     <Grid container spacing={4}>
                         {pets.map(pets => {
