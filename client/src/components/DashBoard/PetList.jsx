@@ -26,7 +26,7 @@ const PetList = (props) => {
             .catch(err => console.error(err));
     }, []);
 
-// Filters data for search bar
+    // Filters data for search bar
     const filteredData = pets.filter((filteredPet) => {
         if (props.input === '') {
             return filteredPet;

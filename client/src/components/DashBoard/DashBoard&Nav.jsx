@@ -5,22 +5,24 @@ import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-
+import TextField from '@mui/material/TextField';
 
 
 import AddButton from '../Nav/AddButton';
 import PetList from './PetList';
 
 
+
 const DashBoardNav = () => {
     const [inputText, setInputText] = useState("");
-    let inputHandler = (e) => {
+
+
+    const inputHandler = (event) => {
         //convert input text to lower case
-        var lowerCase = e.target.value.toLowerCase();
+        const lowerCase = event.target.value.toLowerCase();
         setInputText(lowerCase);
     };
 
@@ -81,15 +83,19 @@ const DashBoardNav = () => {
                             </Typography>
                         </Button>
                         <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                            <input onChange={inputHandler} />
+                            <TextField onChange={inputHandler} />
+
+
                             <Search>
                                 <SearchIconWrapper >
-                                    <SearchIcon  />
+                                    <SearchIcon />
                                 </SearchIconWrapper>
                                 <StyledInputBase
                                     placeholder="Search…"
+                                    // onChange={inputHandler}
                                 />
                             </Search>
+
 
                             <FavoriteIcon />
                             <AddButton />
