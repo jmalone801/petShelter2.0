@@ -132,8 +132,9 @@ const PetForm = (props) => {
                                 <p></p>
                                 <input
                                     type="file"
-                                    name="myImage"
-                                    onChange={(event) => { console.log(event.target.files[0]); setImage(event.target.files[0]) }} />
+                                    name="image"
+                                    id="image"
+                                    onChange={(event) => setImage(event.target.files[0]) } />
                                 <br></br>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <Button

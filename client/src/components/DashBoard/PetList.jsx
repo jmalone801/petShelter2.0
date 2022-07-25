@@ -54,10 +54,13 @@ const PetList = (props) => {
                                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                                         <CardMedia
                                             style={{ height: '200px' }}
-                                            component="img"
-                                            image="https://source.unsplash.com/random"
+                                            component="image"
+                                            // image="https://source.unsplash.com/random"
+                                            src="/uploads/"
                                             alt="random"
                                         />
+                                        <img src="/uploads/"
+                                            alt="random"></img>
                                         {/* <img alt='test'>{pets.image}</img> */}
                                         <CardContent sx={{ flexGrow: 1 }}>
                                             <Typography gutterBottom variant="h5" component="h2">

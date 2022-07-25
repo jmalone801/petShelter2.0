@@ -1,0 +1,27 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    min-width: 100px;
+}
+
+.search {
+    border: 1px solid #ffffff00;
+    border-radius: 4px;
+    height: 40px;
+    width: 100%;
+    padding: 2px 23px 2px 46px;
+    background-color: #ffffff2b;
+    color: white;
+    outline: 0;
+}
+
+.search:hover,
+.search:focus {
+    border: 1px solid #ffffff00;
+    background-color: rgba(255, 255, 255, 0.297);
+}
+
+::placeholder { 
+    color: white;
+    opacity: 60%;
+}

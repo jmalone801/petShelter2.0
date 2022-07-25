@@ -5,20 +5,16 @@ import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { styled, alpha } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import TextField from '@mui/material/TextField';
-
+import './searchBar.css';
 
 import AddButton from '../Nav/AddButton';
 import PetList from './PetList';
 
 
-
 const DashBoardNav = () => {
     const [inputText, setInputText] = useState("");
-
 
     const inputHandler = (event) => {
         //convert input text to lower case
@@ -26,22 +22,6 @@ const DashBoardNav = () => {
         setInputText(lowerCase);
     };
 
-
-    const Search = styled('div')(({ theme }) => ({
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: alpha(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: alpha(theme.palette.common.white, 0.25),
-        },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
-            width: 'auto',
-        },
-    }));
 
     const SearchIconWrapper = styled('div')(({ theme }) => ({
         padding: theme.spacing(0, 2),
@@ -51,20 +31,6 @@ const DashBoardNav = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-    }));
-
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
-        '& .MuiInputBase-input': {
-            padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
-            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-            transition: theme.transitions.create('width'),
-            width: '100%',
-            [theme.breakpoints.up('md')]: {
-                width: '20ch',
-            },
-        },
     }));
 
 
@@ -83,20 +49,12 @@ const DashBoardNav = () => {
                             </Typography>
                         </Button>
                         <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                            <TextField onChange={inputHandler} />
-
-
-                            <Search>
+                            <div class="wrapper">
                                 <SearchIconWrapper >
                                     <SearchIcon />
                                 </SearchIconWrapper>
-                                <StyledInputBase
-                                    placeholder="Search…"
-                                    // onChange={inputHandler}
-                                />
-                            </Search>
-
-
+                                <input class="search" placeholder="Search..." type="text" onChange={inputHandler} />
+                            </div>
                             <FavoriteIcon />
                             <AddButton />
                         </Box>
@@ -105,7 +63,6 @@ const DashBoardNav = () => {
             </Box>
             <PetList input={inputText} />
         </div>
-
     );
 }
 export default DashBoardNav;
