@@ -9,7 +9,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
 import Footer from '../Footer/footer';
 
 
@@ -17,8 +16,10 @@ const PetList = (props) => {
     const [pets, setPets] = useState([]);
 
 
+
     // Displays all pets
     useEffect(() => {
+        // loadImages();
         axios.get('http://localhost:8000/api/pets/all')
             .then(res => {
                 setPets(res.data);
@@ -54,14 +55,14 @@ const PetList = (props) => {
                                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                                         <CardMedia
                                             style={{ height: '200px' }}
-                                            component="image"
-                                            // image="https://source.unsplash.com/random"
-                                            src="/uploads/"
+                                            // component="image"
+                                            image="https://source.unsplash.com/random"
+                                            src=""
                                             alt="random"
-                                        />
-                                        <img src="/uploads/"
-                                            alt="random"></img>
-                                        {/* <img alt='test'>{pets.image}</img> */}
+                                        ></CardMedia>
+
+
+
                                         <CardContent sx={{ flexGrow: 1 }}>
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 {pets.name}

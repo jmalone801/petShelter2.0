@@ -49,11 +49,11 @@ const DashBoardNav = () => {
                             </Typography>
                         </Button>
                         <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                            <div class="wrapper">
+                            <div className="wrapper">
                                 <SearchIconWrapper >
                                     <SearchIcon />
                                 </SearchIconWrapper>
-                                <input class="search" placeholder="Search..." type="text" onChange={inputHandler} />
+                                <input className="search" placeholder="Search..." type="text" onChange={inputHandler} />
                             </div>
                             <FavoriteIcon />
                             <AddButton />

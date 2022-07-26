@@ -16,7 +16,6 @@ const PetForm = (props) => {
     const [skillOne, setSkillOne] = useState("");
     const [skillTwo, setSkillTwo] = useState("");
     const [skillThree, setSkillThree] = useState("");
-    const [image, setImage] = useState();
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
@@ -24,15 +23,13 @@ const PetForm = (props) => {
     //handler when the form is submitted
     const onSubmitHandler = event => {
         event.preventDefault();
-
         axios.post('http://localhost:8000/api/pets/new', {
             name,
             type,
             description,
             skillOne,
             skillTwo,
-            skillThree,
-            image
+            skillThree
         })
             // Displays validiations
             .then(res => {
@@ -54,6 +51,7 @@ const PetForm = (props) => {
             })
             .catch(err => console.log(err))
     }
+
 
 
     return (
@@ -130,11 +128,15 @@ const PetForm = (props) => {
                                     fullWidth
                                     onChange={(event) => setSkillThree(event.target.value)} value={skillThree} />
                                 <p></p>
+
                                 <input
+                                    id="fileInput"
                                     type="file"
                                     name="image"
-                                    id="image"
-                                    onChange={(event) => setImage(event.target.files[0]) } />
+                                    // onChange={handleFileInputChange}
+                                    // value={fileInputState}
+                                />
+
                                 <br></br>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                     <Button
