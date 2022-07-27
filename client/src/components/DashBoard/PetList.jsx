@@ -15,11 +15,12 @@ import Footer from '../Footer/footer';
 const PetList = (props) => {
     const [pets, setPets] = useState([]);
 
+    // console.log(pets)
+
 
 
     // Displays all pets
     useEffect(() => {
-        // loadImages();
         axios.get('http://localhost:8000/api/pets/all')
             .then(res => {
                 setPets(res.data);
@@ -53,13 +54,21 @@ const PetList = (props) => {
                             return (
                                 <Grid item key={index} xs={12} sm={6} md={3}>
                                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                                        <CardMedia
+                                        {/* <img
                                             style={{ height: '200px' }}
                                             // component="image"
-                                            image="https://source.unsplash.com/random"
-                                            src=""
+                                            // image={pets.image}
+                                            src={pets.image}
                                             alt="random"
-                                        ></CardMedia>
+                                        /> */}
+                                        <CardMedia 
+                                            style={{ height: '200px' }}
+                                            // component="image"
+                                            image={pets.image}
+                                            src={pets.image}
+                                            alt="random" 
+                                            />
+                                        
 
 
 

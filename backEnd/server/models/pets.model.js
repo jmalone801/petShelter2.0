@@ -24,7 +24,16 @@ const PetShelterSchema = new mongoose.Schema(
         },
         skillOne: { type: String },
         skillTwo: { type: String },
-        skillThree: { type: String }
+        skillThree: { type: String },
+        image: {
+            type: String,
+            default:""
+        },
+    
+        cloudinary_id: {
+            type: String,
+            default:""
+        },
     },
     { timestamps: true }
 )

@@ -16,21 +16,52 @@ const PetForm = (props) => {
     const [skillOne, setSkillOne] = useState("");
     const [skillTwo, setSkillTwo] = useState("");
     const [skillThree, setSkillThree] = useState("");
+    const [file, setFile] = useState(null);
+    const [image, setImage] = useState(null);
+    const [cloudinary_id, setCloudinary_id] = useState(null);
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
+    // Handles image preview
+    const handleOnChange = (event) => {
+        const reader = new FileReader();
+        reader.onload = function (onLoadEvent) {
+            setFile(onLoadEvent.target.result);
+            setImage(null)
+            setCloudinary_id(null)
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
 
     //handler when the form is submitted
-    const onSubmitHandler = event => {
+    const onSubmitHandler = async event => {
         event.preventDefault();
+
+        // Sets up image to be sent to Cloudinary
+        const formData = new FormData();
+        formData.append('file', file)
+        formData.append('upload_preset', 'petShelter')
+        // Uploading the image to Cloudinary
+        const result = await axios.post('https://api.cloudinary.com/v1_1/jamescloudinaryforphotos/upload', formData)
+
+        // Packages data to send into database
+        const imageData = {
+            image: result.data.secure_url,
+            cloudinary_id: result.data.public_id
+        }
+
+        // Sends all data to database
         axios.post('http://localhost:8000/api/pets/new', {
             name,
             type,
             description,
             skillOne,
             skillTwo,
-            skillThree
+            skillThree,
+            ...imageData
         })
+        // console.log(imageData)
             // Displays validiations
             .then(res => {
                 console.log(res)
@@ -50,8 +81,9 @@ const PetForm = (props) => {
                 }
             })
             .catch(err => console.log(err))
+            console.log(image)
+            console.log(cloudinary_id)
     }
-
 
 
     return (
@@ -64,7 +96,6 @@ const PetForm = (props) => {
                 backgroundRepeat: 'repeat',
                 marginTop: '60px',
             }}>
-
                 <div>
                     <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>Know a pet in need of a good home?</h3>
                     <Paper
@@ -130,12 +161,14 @@ const PetForm = (props) => {
                                 <p></p>
 
                                 <input
-                                    id="fileInput"
                                     type="file"
+                                    id="image"
                                     name="image"
-                                    // onChange={handleFileInputChange}
-                                    // value={fileInputState}
-                                />
+                                    onChange={handleOnChange}
+                                /><br></br>
+
+                                {/* Add if statement to show photo */}
+                                <img src={file} alt="Preview" style={{ width: '200px' }} />
 
                                 <br></br>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>

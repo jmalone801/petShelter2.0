@@ -54,6 +54,13 @@ const Detail = (props) => {
                         <p>Pet Type: {pets.type}</p>
                         <p>Description: {pets.description}</p>
                         <p>Skills: {pets.skillOne} {pets.skillTwo} {pets.skillThree}</p>
+                        <img
+                            style={{ height: '200px' }}
+                            // component="image"
+                            // image={pets.image}
+                            src={pets.image}
+                            alt="random"
+                        />
                         <Button
                             variant="contained"
                             style={{ backgroundColor: 'rgb(248, 181, 161)' }}

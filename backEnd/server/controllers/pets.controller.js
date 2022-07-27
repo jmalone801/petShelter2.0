@@ -3,14 +3,16 @@ const { Pets } = require('../models/pets.model');
 
 // creates one new pet
 module.exports.createPets = (request, response) => {
-    const { name, type, description, skillOne, skillTwo, skillThree } = request.body;
+    const { name, type, description, skillOne, skillTwo, skillThree, image, cloudinary_id } = request.body;
     Pets.create({
         name,
         type,
         description,
         skillOne,
         skillTwo,
-        skillThree
+        skillThree,
+        image,
+        cloudinary_id
     })
         .then(pet => response.json(pet))
         .catch(err => response.json(err));
