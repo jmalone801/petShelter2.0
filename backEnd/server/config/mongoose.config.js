@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/pets", {
+mongoose.connect("mongodb://127.0.0.1/pets", {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
 })
     .then(() => console.log("Ayee you connected to MongoDB!!!"))
     .catch(err => console.log("Aw poop, you're no longer connected to the database", err));

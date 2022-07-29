@@ -22,6 +22,7 @@ const PetForm = (props) => {
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
+
     // Handles image preview
     const handleOnChange = (event) => {
         const reader = new FileReader();
@@ -35,7 +36,7 @@ const PetForm = (props) => {
 
 
     //handler when the form is submitted
-    const onSubmitHandler = async event => {
+    const onSubmitHandler = event => {
         event.preventDefault();
 
         // Sets up image to be sent to Cloudinary
@@ -43,7 +44,15 @@ const PetForm = (props) => {
         formData.append('file', file)
         formData.append('upload_preset', 'petShelter')
         // Uploading the image to Cloudinary
-        const result = await axios.post('https://api.cloudinary.com/v1_1/jamescloudinaryforphotos/upload', formData)
+        const result = axios.post('https://api.cloudinary.com/v1_1/jamescloudinaryforphotos/upload', formData)
+        .then(res => {
+            console.log(res)
+            if (res.data.errors) {
+                setErrors(res.data.errors)
+            }
+
+        })
+        .catch(err => console.log(err))
 
         // Packages data to send into database
         const imageData = {
@@ -165,7 +174,8 @@ const PetForm = (props) => {
                                     id="image"
                                     name="image"
                                     onChange={handleOnChange}
-                                /><br></br>
+                                />
+                                <br></br>
 
                                 {/* Add if statement to show photo */}
                                 <img src={file} alt="Preview" style={{ width: '200px' }} />

@@ -54,24 +54,12 @@ const PetList = (props) => {
                             return (
                                 <Grid item key={index} xs={12} sm={6} md={3}>
                                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                                        {/* <img
-                                            style={{ height: '200px' }}
-                                            // component="image"
-                                            // image={pets.image}
-                                            src={pets.image}
-                                            alt="random"
-                                        /> */}
                                         <CardMedia 
                                             style={{ height: '200px' }}
-                                            // component="image"
                                             image={pets.image}
                                             src={pets.image}
-                                            alt="random" 
+                                            alt="Pet" 
                                             />
-                                        
-
-
-
                                         <CardContent sx={{ flexGrow: 1 }}>
                                             <Typography gutterBottom variant="h5" component="h2">
                                                 {pets.name}
