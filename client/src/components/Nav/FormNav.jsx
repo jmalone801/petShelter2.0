@@ -3,7 +3,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import Button from '@mui/material/Button';
 
 
@@ -23,7 +22,6 @@ const FormNav = () => {
                         </Typography>
                     </Button>
                         <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                            <FavoriteIcon />
                         </Box>
                 </Toolbar>
             </AppBar>

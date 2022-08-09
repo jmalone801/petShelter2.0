@@ -41,7 +41,7 @@ const Detail = (props) => {
             }}>
 
                 <div>
-                    <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>You are now viewing {pets.name}</h3>
+                    <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold', color: '#474747' }}>You are now viewing {pets.name}</h3>
                     <Paper
                         elevation={2}
                         style={{

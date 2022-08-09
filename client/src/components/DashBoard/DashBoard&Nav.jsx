@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import './searchBar.css';
@@ -55,8 +54,14 @@ const DashBoardNav = () => {
                                 </SearchIconWrapper>
                                 <input className="search" placeholder="Search..." type="text" onChange={inputHandler} />
                             </div>
-                            <FavoriteIcon />
                             <AddButton />
+                            <Button
+                                href="https://secure.aspca.org/donate/donate?ms=wb_top_donate&initialms=wb_top_donate&pcode=WEBMEMBER&lpcode=WEBGUARD"
+                                variant="text"
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                style={{ color: 'grey' }}>Donate
+                            </Button>
                         </Box>
                     </Toolbar>
                 </AppBar>

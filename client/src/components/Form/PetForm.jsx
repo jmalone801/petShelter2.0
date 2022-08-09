@@ -140,7 +140,7 @@ const PetForm = (props) => {
                 marginTop: '60px',
             }}>
                 <div>
-                    <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold' }}>Know a pet in need of a good home?</h3>
+                    <h3 style={{ marginTop: '40px', marginBottom: '20px', fontWeight: 'bold', color: '#474747' }}>Know a pet in need of a good home?</h3>
                     <Paper
                         elevation={2}
                         style={{
@@ -211,10 +211,10 @@ const PetForm = (props) => {
                                 />
                                 <br></br>
 
-                                {/* Add if statement so it doesnt show preview alt text */}
-                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                {/* Hides img is no file is presents */}
+                                {file?<div style={{ display: 'flex', justifyContent: 'center' }}>
                                     <img src={file} alt="Preview" style={{ width: '200px' }} />
-                                </div>
+                                </div>:<div></div>}
 
 
                                 <br></br>
