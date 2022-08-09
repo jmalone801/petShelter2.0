@@ -5,6 +5,8 @@ import background from "../assets/petBackground.png";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Paper } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop from '@mui/material/Backdrop';
 import FormNav from '../Nav/FormNav';
 import Footer from '../Footer/footer';
 
@@ -19,6 +21,7 @@ const PetForm = (props) => {
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
     const [cloudinary_id, setCloudinary_id] = useState(null);
+    const [spinner, setSpinner] = useState(true);
     const [errors, setErrors] = useState({});
     const history = useHistory();
 
@@ -36,62 +39,93 @@ const PetForm = (props) => {
 
 
     //handler when the form is submitted
-    const onSubmitHandler = event => {
+    const onSubmitHandler = async (event) => {
         event.preventDefault();
+        
+        // Checks if user uploaded a file
+        // If user did upload a file, it POSTs both Axios calls
+        if (file != null) {
+            // Starts spinner
+            setSpinner(false)
+            // Sets up image to be sent to Cloudinary
+            const formData = new FormData();
+            formData.append('file', file)
+            formData.append('upload_preset', 'petShelter')
+            // Uploading the image to Cloudinary
+            const result = await axios.post('https://api.cloudinary.com/v1_1/jamescloudinaryforphotos/upload', formData)
 
-        // Sets up image to be sent to Cloudinary
-        const formData = new FormData();
-        formData.append('file', file)
-        formData.append('upload_preset', 'petShelter')
-        // Uploading the image to Cloudinary
-        const result = axios.post('https://api.cloudinary.com/v1_1/jamescloudinaryforphotos/upload', formData)
-        .then(res => {
-            console.log(res)
-            if (res.data.errors) {
-                setErrors(res.data.errors)
+            // Packages data to send into database
+            const imageData = {
+                image: result.data.secure_url,
+                cloudinary_id: result.data.public_id
             }
 
-        })
-        .catch(err => console.log(err))
-
-        // Packages data to send into database
-        const imageData = {
-            image: result.data.secure_url,
-            cloudinary_id: result.data.public_id
-        }
-
-        // Sends all data to database
-        axios.post('http://localhost:8000/api/pets/new', {
-            name,
-            type,
-            description,
-            skillOne,
-            skillTwo,
-            skillThree,
-            ...imageData
-        })
-        // console.log(imageData)
-            // Displays validiations
-            .then(res => {
-                console.log(res)
-                if (res.data.errors) {
-                    setErrors(res.data.errors)
-                }
-                // Clears input fields
-                else {
-                    setName("")
-                    setType("")
-                    setDescription("")
-                    setSkillOne("")
-                    setSkillTwo("")
-                    setSkillThree("")
-                    setErrors("")
-                    history.push("/")
-                }
+            // Sends all data to database
+            axios.post('http://localhost:8000/api/pets/new', {
+                name,
+                type,
+                description,
+                skillOne,
+                skillTwo,
+                skillThree,
+                ...imageData
             })
-            .catch(err => console.log(err))
+                // console.log(imageData)
+                // Displays validiations
+                .then(res => {
+                    console.log(res)
+                    if (res.data.errors) {
+                        setErrors(res.data.errors)
+                    }
+                    // Clears input fields
+                    else {
+                        setName("")
+                        setType("")
+                        setDescription("")
+                        setSkillOne("")
+                        setSkillTwo("")
+                        setSkillThree("")
+                        setErrors("")
+                        history.push("/")
+                    }
+                })
+                .catch(err => console.log(err))
+                // Stops spinner
+                setSpinner(true)
+
+            // If user did NOT upload file, it only POSTs the following Axios call
+        } else {
+            // Sends all data to database
+            axios.post('http://localhost:8000/api/pets/new', {
+                name,
+                type,
+                description,
+                skillOne,
+                skillTwo,
+                skillThree
+            })
+                // Displays validiations
+                .then(res => {
+                    console.log(res)
+                    if (res.data.errors) {
+                        setErrors(res.data.errors)
+                    }
+                    // Clears input fields
+                    else {
+                        setName("")
+                        setType("")
+                        setDescription("")
+                        setSkillOne("")
+                        setSkillTwo("")
+                        setSkillThree("")
+                        setErrors("")
+                        history.push("/")
+                    }
+                })
+                .catch(err => console.log(err))
             console.log(image)
             console.log(cloudinary_id)
+        }
     }
 
 
@@ -177,8 +211,11 @@ const PetForm = (props) => {
                                 />
                                 <br></br>
 
-                                {/* Add if statement to show photo */}
-                                <img src={file} alt="Preview" style={{ width: '200px' }} />
+                                {/* Add if statement so it doesnt show preview alt text */}
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <img src={file} alt="Preview" style={{ width: '200px' }} />
+                                </div>
+
 
                                 <br></br>
                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -192,6 +229,9 @@ const PetForm = (props) => {
                                         variant="contained"
                                         style={{ backgroundColor: 'rgb(248, 181, 161)', width: '140px' }}>Submit
                                     </Button>
+                                    {spinner ? spinner : <Backdrop style={{ color: '#fff', }}  open>
+                                        <CircularProgress color="inherit" />
+                                    </Backdrop>}
                                 </div>
                             </div>
                         </form>

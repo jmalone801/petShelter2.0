@@ -55,16 +55,24 @@ const Detail = (props) => {
                         <p>Description: {pets.description}</p>
                         <p>Skills: {pets.skillOne} {pets.skillTwo} {pets.skillThree}</p>
                         <img
-                            style={{ height: '200px' }}
-                            // component="image"
-                            // image={pets.image}
-                            src={pets.image}
-                            alt="random"
+                            style={{ width: '200px' }}
+                            src={pets.image || 'https://res.cloudinary.com/jamescloudinaryforphotos/image/upload/v1660004528/petShelterUploads/stmfyh6uzxkt2bmqf01l.png'}
+                            alt="Preview"
                         />
-                        <Button
-                            variant="contained"
-                            style={{ backgroundColor: 'rgb(248, 181, 161)' }}
-                            onClick={(e) => { deleteProduct(pets._id) }}>Adopt {pets.name}</Button>
+                        <br></br><br></br>
+
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Button
+                                href="/"
+                                variant="text"
+                                style={{ color: 'grey' }}>Cancel
+                            </Button>
+                            <Button
+                                variant="contained"
+                                style={{ backgroundColor: 'rgb(248, 181, 161)' }}
+                                onClick={(e) => { deleteProduct(pets._id) }}>Adopt {pets.name}
+                            </Button>
+                        </div>
                     </Paper>
                 </div>
             </div>

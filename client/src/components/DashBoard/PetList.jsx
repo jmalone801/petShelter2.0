@@ -56,9 +56,10 @@ const PetList = (props) => {
                                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                                         <CardMedia 
                                             style={{ height: '200px' }}
-                                            image={pets.image}
+                                            image={pets.image || 'https://res.cloudinary.com/jamescloudinaryforphotos/image/upload/v1660004528/petShelterUploads/stmfyh6uzxkt2bmqf01l.png'}
                                             src={pets.image}
                                             alt="Pet" 
+                                            prop=""
                                             />
                                         <CardContent sx={{ flexGrow: 1 }}>
                                             <Typography gutterBottom variant="h5" component="h2">
