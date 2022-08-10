@@ -69,7 +69,7 @@ const Detail = (props) => {
                             </Button>
                             <Button
                                 variant="contained"
-                                style={{ backgroundColor: 'rgb(248, 181, 161)' }}
+                                style={{ backgroundColor: '#f2b01c' }}
                                 onClick={(e) => { deleteProduct(pets._id) }}>Adopt {pets.name}
                             </Button>
                         </div>

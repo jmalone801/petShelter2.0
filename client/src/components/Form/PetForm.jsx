@@ -227,7 +227,7 @@ const PetForm = (props) => {
                                     <Button
                                         type="submit"
                                         variant="contained"
-                                        style={{ backgroundColor: 'rgb(248, 181, 161)', width: '140px' }}>Submit
+                                        style={{ backgroundColor: '#f2b01c', width: '140px' }}>Submit
                                     </Button>
                                     {spinner ? spinner : <Backdrop style={{ color: '#fff', }}  open>
                                         <CircularProgress color="inherit" />

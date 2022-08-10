@@ -9,7 +9,7 @@ const AddButton = () => {
             <Button 
                 href="/pets/new"
                 variant="contained"
-                style={{ backgroundColor: 'rgb(248, 181, 161)', color: 'inherit' }}
+                style={{ backgroundColor: '#f2b01c', color: 'inherit' }}
                 >Add Pet</Button>
         </div>
 

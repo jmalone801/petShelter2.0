@@ -39,7 +39,7 @@ const DashBoardNav = () => {
                 <AppBar
                     position="fixed"
                     elevation={2}
-                    sx={{ backgroundColor: 'rgb(151, 196, 244)' }}
+                    sx={{ backgroundColor: '#5e8cba' }}
                 >
                     <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Button href="/">
@@ -60,7 +60,7 @@ const DashBoardNav = () => {
                                 variant="text"
                                 target="_blank" 
                                 rel="noopener noreferrer"
-                                style={{ color: 'grey' }}>Donate
+                                style={{ color: 'white' }}>Donate
                             </Button>
                         </Box>
                     </Toolbar>

@@ -13,7 +13,7 @@ const FormNav = () => {
             <AppBar
                 position="fixed"
                 elevation={2}
-                sx={{ backgroundColor: 'rgb(151, 196, 244)' }}
+                sx={{ backgroundColor: '#5e8cba' }}
             >
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Button href="/">
